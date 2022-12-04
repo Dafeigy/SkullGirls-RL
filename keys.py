@@ -370,7 +370,7 @@ class Keys(object):
 
         return True
     
-    @classmethod
+    
     # direct key press
     def directKey(self, key, direction=None, type=None):
         if type is None:

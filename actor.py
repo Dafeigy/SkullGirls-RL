@@ -1,177 +1,194 @@
-import config
+from config import *
+from utils import ActionInfo
 import keys
 import time
 
 controller = keys.Keys()
-controller.directKey("S",controller.key_release)
+
+
+
+
 
 # move action
+@ActionInfo
 def move_left(controller):
-    controller.directKey("A")
-    time.sleep(1)
-    controller.directKey("A",controller.key_release)
+    controller.directKey(LEFT)
+    time.sleep(0.5)
+    controller.directKey(LEFT,controller.key_release)
 
+@ActionInfo
 def move_right(controller):
-    controller.directKey("D")
-    time.sleep(1)
-    controller.directKey("D",controller.key_release)
+    controller.directKey(RIGHT)
+    time.sleep(0.5)
+    controller.directKey(RIGHT,controller.key_release)
 
+@ActionInfo
 def move_up(controller):
-    controller.directKey("W")
-    time.sleep(1)
-    controller.directKey("W",controller.key_release)
+    controller.directKey(UP)
+    time.sleep(0.5)
+    controller.directKey(UP,controller.key_release)
 
+@ActionInfo
 def move_down(controller):
-    controller.directKey("S")
-    time.sleep(1)
-    controller.directKey("S",controller.key_release)
+    controller.directKey(DOWN)
+    time.sleep(0.5)
+    controller.directKey(DOWN,controller.key_release)
 
 # basic action
-def LP(controller):
-    controller.directKey("J")
+@ActionInfo
+def _LP(controller):
+    controller.directKey(LP)
     time.sleep(0.005)
-    controller.directKey("J",controller.key_release)
+    controller.directKey(LP,controller.key_release)
 
-def MP(controller):
-    controller.directKey("K")
+@ActionInfo
+def _MP(controller):
+    controller.directKey(MP)
     time.sleep(0.005)
-    controller.directKey("K",controller.key_release)
+    controller.directKey(MP,controller.key_release)
 
-def HP(controller):
-    controller.directKey("L")
+@ActionInfo
+def _HP(controller):
+    controller.directKey(HP)
     time.sleep(0.005)
-    controller.directKey("L",controller.key_release)
+    controller.directKey(HP,controller.key_release)
 
-def LK(controller):
-    controller.directKey("U")
+@ActionInfo
+def _LK(controller):
+    controller.directKey(LK)
     time.sleep(0.005)
-    controller.directKey("U",controller.key_release)
+    controller.directKey(LK,controller.key_release)
 
-def MK(controller):
-    controller.directKey("I")
+@ActionInfo
+def _MK(controller):
+    controller.directKey(MK)
     time.sleep(0.005)
-    controller.directKey("I",controller.key_release)
+    controller.directKey(MK,controller.key_release)
 
-def HK(controller):
-    controller.directKey("O")
+@ActionInfo
+def _HK(controller):
+    controller.directKey(HK)
     time.sleep(0.005)
-    controller.directKey("O",controller.key_release)
+    controller.directKey(HK,controller.key_release)
 
-def throw(controller):
-    controller.directKey("U")
-    controller.directKey("J")
+@ActionInfo
+def _throw(controller):
+    controller.directKey(LK)
+    controller.directKey(LP)
     time.sleep(0.08)
-    controller.directKey("U",controller.key_release)
-    controller.directKey("J",controller.key_release)
+    controller.directKey(LK,controller.key_release)
+    controller.directKey(LP,controller.key_release)
 
 
 
-# Filia combo
-def _RingletSpike(controller):
-    controller.directKey("S")
+# Filia combo，requires direction
+def _RingletSpike(controller,reverse=False):
+    controller.directKey(DOWN)
     time.sleep(0.001)
-    controller.directKey("D")
+    controller.directKey(RIGHT)
     time.sleep(0.001)
-    controller.directKey("S",controller.key_release)
+    controller.directKey(DOWN,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("D",controller.key_release)
-    controller.directKey("J")
-    controller.directKey("J",controller.key_release)
+    controller.directKey(RIGHT,controller.key_release)
+    controller.directKey(LP)
+    controller.directKey(LP,controller.key_release)
 
-def _RingletPsych(controller):
+def _RingletPsych(controller,reverse=False):
     # This one seems to be a little useless in single player
-    controller.directKey("S")
+    controller.directKey(DOWN)
     time.sleep(0.001)
-    controller.directKey("D")
+    controller.directKey(RIGHT)
     time.sleep(0.001)
-    controller.directKey("S",controller.key_release)
+    controller.directKey(DOWN,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("D",controller.key_release)
-    controller.directKey("U")
-    controller.directKey("U",controller.key_release)
+    controller.directKey(RIGHT,controller.key_release)
+    controller.directKey(LK)
+    controller.directKey(LK,controller.key_release)
 
-def _Updo(controller):
-    controller.directKey("D")
+def _Updo(controller,reverse=False):
+    controller.directKey(RIGHT)
     time.sleep(0.001)
-    controller.directKey("S")
+    controller.directKey(DOWN)
     time.sleep(0.001)
-    controller.directKey("D",controller.key_release)
+    controller.directKey(RIGHT,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("D")
+    controller.directKey(RIGHT)
     time.sleep(0.001)
-    controller.directKey("S",controller.key_release)
+    controller.directKey(DOWN,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("D",controller.key_release)
+    controller.directKey(RIGHT,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("J")
-    controller.directKey("J",controller.key_release)
+    controller.directKey(LP)
+    controller.directKey(LP,controller.key_release)
     time.sleep(0.001)
 
-def _Hairball(controller):
+def _Hairball(controller,reverse=False):
 
-    controller.directKey("S")
+    controller.directKey(DOWN)
     time.sleep(0.001)
-    controller.directKey("A")
+    controller.directKey(LEFT)
     time.sleep(0.001)
-    controller.directKey("S",controller.key_release)
+    controller.directKey(DOWN,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("A",controller.key_release)
-    controller.directKey("U")
-    controller.directKey("U",controller.key_release)
+    controller.directKey(LEFT,controller.key_release)
+    controller.directKey(LK)
+    controller.directKey(LK,controller.key_release)
 
-def _FenrirDrive(controller):
-    controller.directKey("D")
+def _FenrirDrive(controller,reverse=False):
+    controller.directKey(RIGHT)
     time.sleep(0.001)
-    controller.directKey("S")
+    controller.directKey(DOWN)
     time.sleep(0.001)
-    controller.directKey("D",controller.key_release)
+    controller.directKey(RIGHT,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("D")
+    controller.directKey(RIGHT)
     time.sleep(0.001)
-    controller.directKey("S",controller.key_release)
+    controller.directKey(DOWN,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("D",controller.key_release)
+    controller.directKey(RIGHT,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("Y")
-    controller.directKey("Y",controller.key_release)
+    controller.directKey(MACRO2)
+    controller.directKey(MACRO2,controller.key_release)
 
-def _Tricobezoar(controller):
-    controller.directKey("S")
+def _Tricobezoar(controller,reverse=False):
+    controller.directKey(DOWN)
     time.sleep(0.001)
-    controller.directKey("A")
+    controller.directKey(LEFT)
     time.sleep(0.001)
-    controller.directKey("S",controller.key_release)
+    controller.directKey(DOWN,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("A",controller.key_release)
-    controller.directKey("Y")
-    controller.directKey("Y",controller.key_release)
+    controller.directKey(LEFT,controller.key_release)
+    controller.directKey(MACRO2)
+    controller.directKey(MACRO2,controller.key_release)
 
-def _GregorSamson(controller):
-    controller.directKey("S")
+def _GregorSamson(controller,reverse=False):
+    controller.directKey(DOWN)
     time.sleep(0.001)
-    controller.directKey("A")
+    controller.directKey(LEFT)
     time.sleep(0.001)
-    controller.directKey("S",controller.key_release)
+    controller.directKey(DOWN,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("A",controller.key_release)
+    controller.directKey(LEFT,controller.key_release)
     time.sleep(0.001)
-    controller.directKey("H")
-    controller.directKey("H",controller.key_release)
+    controller.directKey(MACRO1)
+    controller.directKey(MACRO1,controller.key_release)
 
 _skill_list_FILIA = [_RingletSpike, _FenrirDrive, _GregorSamson, _Tricobezoar, _Updo, _Hairball]
 move_list = [move_up, move_down, move_left, move_right]
-basic_list = [LP, MP, HP, LK, MK, HK, throw]
+basic_list = [_LP, _MP, _HP, _LK, _MK, _HK, _throw]
 
 
 class Actor():
-    def __init__(self, actionlist) -> None:
+    def __init__(self, actionlist:list) -> None:
         self.actionlist = actionlist
+        self.model = None
+    
+    def take_action(self,id:int):
+        return self.actionlist[id]
 
-    def move_action(self,id):
-        self.actionlist[id]()
 
 class Filia():
-    def __init__(self) -> None:
+    def __init__(self,) -> None:
         self.name = 'Filia'
         self.moveActor = Actor(move_list)
         self.basicActor = Actor(basic_list)
@@ -181,8 +198,5 @@ class Filia():
 
 
 
-if __name__ == "__main__":
 
-    time.sleep(3)
-    _FenrirDrive(controller=controller)
 
