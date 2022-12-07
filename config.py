@@ -1,4 +1,4 @@
-# TODO: Synchronize to actor part
+## TODO: Synchronize to actor part
 
 UP = 'W'
 DOWN = 'S'

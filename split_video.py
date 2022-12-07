@@ -1,5 +1,5 @@
 import cv2
-def video2frames(video_path, output_dir = 'E:\Prog\SkullGirls\Resource\TrainData', vid = None, skipframe = 10):
+def video2frames(video_path, output_dir = 'E:\Prog\SkullGirls\Resource\TrainData', vid = None, skipframe = 5):
     """
     输入：video_path(视频文件的路径)
     输出：output_dir(保存图片路径)
