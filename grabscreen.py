@@ -3,36 +3,28 @@ import numpy as np
 import cv2
 import time
 
-def grab_screen(window_name, region=None):
+def grab_screen(hwin, region:tuple):
     '''
     Args:
-        `window_name` : String of the captured window.
+        `hwin` : Handle of window.
 
-        `region` : tuple (start_x, start_y, end_x, end_y) 
-        or Basically Current full window capture.
+        `region` : tuple of source (start_x, start_y, end_x, end_y) 
 
     return:
         `numpy` array shape in [W,H,C]
     '''
-    hwin = win32gui.FindWindow(None, window_name)
+    
     # hwin = win32gui.GetDesktopWindow()
 
-    if region:
-        left,top,right,bot = region
-            
-    else:
-        # width = win32api.GetSystemMetrics(win32con.SM_CXVIRTUALSCREEN)
-        # height = win32api.GetSystemMetrics(win32con.SM_CYVIRTUALSCREEN)
-        # left = win32api.GetSystemMetrics(win32con.SM_XVIRTUALSCREEN)
-        # top = win32api.GetSystemMetrics(win32con.SM_YVIRTUALSCREEN)
-
-        left, top, right, bot = win32gui.GetWindowRect(hwin)
     
+    left,top,right,bot = region
+            
+
     width = right - left + 1
     height = bot - top + 1
 
 
-    hwindc = win32gui.GetWindowDC(hwin)
+    hwindc = win32gui.GetWindowDC(win32gui.GetDesktopWindow())
     srcdc = win32ui.CreateDCFromHandle(hwindc)
     memdc = srcdc.CreateCompatibleDC()
     bmp = win32ui.CreateBitmap()
@@ -51,10 +43,27 @@ def grab_screen(window_name, region=None):
 
     return img
 
-if __name__ == "__main__":
+def get_region(window_name:str):
+    '''
+    Args:
+        `window_name` : src window name
+    Return:
+        `region`: tuple of screen position (left,top,right,bot);
+        `hwin`: handle of the window
+        ``
+    '''
+    hwin = win32gui.FindWindow(None, window_name)
+    region = win32gui.GetWindowRect(hwin)
+    
+    return hwin, region
 
+if __name__ == "__main__":
+    # Skullgirls Encore
+    # Clash for Windows
+    # hwin, region = get_region('Skullgirls Encore') # If you don't move the current window
     time.sleep(2)
     while True:
-        img = grab_screen('Clash for Windows')
+        hwin, region = get_region('Skullgirls Encore')  #move it out if you don't move the window
+        img = grab_screen(hwin, region)
         cv2.imshow('test',img)
         cv2.waitKey(1)
