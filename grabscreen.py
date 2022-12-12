@@ -58,8 +58,6 @@ def get_region(window_name:str):
     return hwin, region
 
 if __name__ == "__main__":
-    # Skullgirls Encore
-    # Clash for Windows
     # hwin, region = get_region('Skullgirls Encore') # If you don't move the current window
     time.sleep(2)
     while True:
